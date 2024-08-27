@@ -6,16 +6,17 @@ import toast, { Toaster } from "react-hot-toast";
 import Header from "../components/Header";
 import { SavedProductsContext } from "../Context/Context";
 import { useAxios } from "../hook/useAxios";
-import Search from '../assets/images/search.svg'
+import Search from "../assets/images/search.svg";
 
 function Shop() {
     const [users, setUsers] = useState([]);
-    const [searchQuery, setSearchQuery] = useState("");
+    const [search, setSearch] = useState("");
     const { savedItems, dispatch } = useContext(SavedProductsContext);
     const navigate = useNavigate();
 
     useEffect(() => {
-        useAxios().get("")
+        useAxios()
+            .get("")
             .then((res) => {
                 setTimeout(() => {
                     setUsers(res.data);
@@ -39,13 +40,13 @@ function Shop() {
         if (isItemSaved) {
             toast.error("Product is already saved");
         } else {
-            dispatch({ type: "ADD_ITEM", payload: item });
+            dispatch({ type: "ADD_PRODUCT", payload: item });
             toast.success("Saved");
         }
     };
 
-    const filteredUsers = users.filter(item =>
-        item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    const filteredUsers = users.filter((item) =>
+        item.title.toLowerCase().includes(search.toLowerCase())
     );
 
     return (
@@ -57,9 +58,15 @@ function Shop() {
                     placeholder="Search . . ."
                     className="w-full p-[10px] px-[18px] rounded-xl outline-none focus:shadow-lg focus:shadow-blue-300"
                     value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
+                    onChange={(e) => setSearch(e.target.value)}
                 />
-                <img src={Search} alt="Search" width={22} height={22} className="absolute top-[10px] right-[10px]"/>
+                <img
+                    src={Search}
+                    alt="Search"
+                    width={22}
+                    height={22}
+                    className="absolute top-[10px] right-[10px]"
+                />
             </label>
             <ul className="flex space-x-[20px] flex-wrap mt-[20px] w-[1300px] mx-auto space-y-[20px] pb-[40px]">
                 {filteredUsers.length ? (
@@ -68,7 +75,10 @@ function Shop() {
                             key={item.id}
                             className="w-[300px] shadow text-white h-[400px] mt-[20px] ml-[20px] border-[1px] flex flex-col justify-between items-center rounded-lg border-white p-[10px] cursor-pointer"
                         >
-                            <Toaster position="top-center" reverseOrder={false} />
+                            <Toaster
+                                position="top-center"
+                                reverseOrder={false}
+                            />
                             <p className="font-semibold text-center">
                                 {item.title}
                             </p>

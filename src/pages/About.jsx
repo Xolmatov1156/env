@@ -38,7 +38,7 @@ function About() {
                         </div>
                     </div>
                 </div>
-            ) : "Xato"}
+            ) : "Failed"}
         </div>
     );
 }

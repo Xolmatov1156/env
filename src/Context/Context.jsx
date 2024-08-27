@@ -4,12 +4,14 @@ export const SavedProductsContext = createContext();
 
 const savedItemsReducer = (state, action) => {
     switch (action.type) {
-        case "ADD_ITEM":
+        case "ADD_PRODUCT":
             const updatedState = [...state, action.payload];
             localStorage.setItem("savedItems", JSON.stringify(updatedState));
             return updatedState;
-            case "DELETE_ITEM":
-            const filteredState = state.filter(item => item.id !== action.payload);
+        case "DELETE_PRODUCT":
+            const filteredState = state.filter(
+                (item) => item.id !== action.payload
+            );
             localStorage.setItem("savedItems", JSON.stringify(filteredState));
             return filteredState;
         case "SET_ITEMS":

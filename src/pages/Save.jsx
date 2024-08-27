@@ -8,7 +8,7 @@ function Save() {
     const navigate = useNavigate();
 
     const handleDelete = (id) => {
-        dispatch({ type: "DELETE_ITEM", payload: id });
+        dispatch({ type: "DELETE_PRODUCT", payload: id });
     };
 
     return (
@@ -35,7 +35,7 @@ function Save() {
                             key={index}
                             className="w-[300px] shadow text-white h-[450px] mt-[20px] ml-[20px] border-[1px] flex flex-col justify-between items-center rounded-lg border-white p-[10px] cursor-pointer"
                         >
-                          <button
+                            <button
                                 onClick={() => handleDelete(item.id)}
                                 className="relative right-[120px] border border-white px-2 rounded-lg my-[7px]"
                             >
@@ -47,12 +47,13 @@ function Save() {
                                 alt={item.title}
                                 className="w-full h-[300px] rounded-lg"
                                 onError={(e) =>
-                                  (e.target.src =
-                                      "https://placehold.co/600x600?text=Not+Found")
-                              }
+                                    (e.target.src =
+                                        "https://placehold.co/600x600?text=Not+Found")
+                                }
                             />
-                            <p className="border-[1px] border-white p-1 rounded-lg">{item.price}$</p>
-                            
+                            <p className="border-[1px] border-white p-1 rounded-lg">
+                                {item.price}$
+                            </p>
                         </li>
                     ))
                 ) : (
