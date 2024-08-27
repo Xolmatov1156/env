@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+ body::-webkit-scrollbar{
+    display: none;
+ }   
+
+ body {
+   background-color: black;
+ }
+
+
+ .shadow {
+  box-shadow: white 0px 5px 15px;
+ }
